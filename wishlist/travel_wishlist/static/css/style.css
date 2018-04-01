@@ -1,7 +1,8 @@
 
 span.visited-text {
   display: inline-block;
-  width: 70%;
+  width: 10%;
+
 }
 
 form.visited-form {
@@ -9,7 +10,8 @@ form.visited-form {
 }
 
 div.wishlist-place {
-  margin: 20px
+  text-align: left;
+  margin-top: 20px;
 }
 
 label {

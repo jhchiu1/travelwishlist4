@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Place
-from .forms import NewPlaceForm
+from .forms import NewPlaceForm, PlaceForm
 
 
 # Fetch data from db and display it in the view
@@ -44,3 +44,17 @@ def place_is_visited(request):
         place.save()
 
     return redirect('place_list')
+
+def place(request, pk):
+    place = get_object_or_404(Place, pk=pk)
+    if request.method == 'POST':
+        form = PlaceForm(request.POST, instance=place)
+        if form.is_valid():
+            place = form.save(commit=True)
+            return redirect('place', pk=place.pk)
+    else:
+        rpform = PlaceForm(instance=place)
+        return render(request, 'travel_wishlist/place.html', {'place': place, 'rpform': rpform})
+
+
+

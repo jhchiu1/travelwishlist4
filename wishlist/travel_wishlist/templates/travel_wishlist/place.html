@@ -1,0 +1,28 @@
+{% extends 'travel_wishlist/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<h2>{{ place.name }}</h2>
+
+ <div class="place">
+ 
+		
+        {% if place.visited_date %}
+            <div class="date">
+                {{ place.visited_date.date }}
+            </div>
+        {% endif %}
+        <!--Edit button-->
+
+       
+        <h3>{{ place.title }}</h3>
+        <p>{{ place.text|linebreaksbr }}</p>
+    </div>
+    <hr>
+<form action="{% url 'place' pk=place.pk %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ rpform }}
+<button type="submit">Save</button>
+</form>
+
+{% endblock %}
